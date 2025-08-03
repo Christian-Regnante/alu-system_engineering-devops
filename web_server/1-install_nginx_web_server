@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-# installs nginx web server on a remote server using ssh
-
-sudo apt update && sudo apt install -y nginx
-sudo ufw allow 'Nginx HTTP'
-echo "I've been transferred to Holberton School" > /var/www/html/index.nginx-debian.html
-sudo service nginx start
