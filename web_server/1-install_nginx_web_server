@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# installs nginx web server on a remote server using ssh
+
+sudo apt update && sudo apt install -y nginx
+sudo service nginx start
+sudo service nginx enable
+sudo ufw allow 'Nginx Full'
+echo "I've been transferred to Holberton School" > /var/www/html/index.html
+sudo service nginx restart
