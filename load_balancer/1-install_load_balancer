@@ -16,6 +16,7 @@ additional_settings=\
         balance roundrobin
         server 6560-web-01 13.222.31.81:80 check
         server 6560-web-02 	34.204.67.32:80 check
+        http-response set-header X-Server-By %[srv_name]
 "
 echo "$additional_settings" | sudo tee -a /etc/haproxy/haproxy.cfg
 

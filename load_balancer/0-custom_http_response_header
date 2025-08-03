@@ -8,7 +8,7 @@ apt-get update -y
 apt-get install -y nginx
 
 # Insert custom header inside the server block of default site
-sed -i "/^\s*server\s*{/a \    add_header X-Served-By \$hostname;" /etc/nginx/sites-available/default
+sed -i "/^\s*server\s*{/a \    set_header X-Served-By %[srv_name];" /etc/nginx/sites-available/default
 
 # Start Nginx using service
 service nginx start
