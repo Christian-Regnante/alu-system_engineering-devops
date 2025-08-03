@@ -4,6 +4,6 @@
 sudo apt update && sudo apt install -y nginx
 sudo service nginx start
 sudo service nginx enable
-sudo ufw allow 'Nginx Full'
-echo "I've been transferred to Holberton School" > /var/www/html/index.html
+sudo ufw allow 'Nginx HTTP'
+echo "I've been transferred to Holberton School" > /var/www/html/index.nginx-debian.html
 sudo service nginx restart
