@@ -15,4 +15,4 @@ echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
 sed -i '/^\s*server\s*{/a \    error_page 404 /custom_404.html;\n    location = /custom_404.html {\n        internal;\n    }' /etc/nginx/sites-available/default
 
 # Start nginx using service
-service nginx start
+sudo service nginx restart

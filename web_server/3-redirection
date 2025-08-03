@@ -1,15 +1,12 @@
 #!/usr/bin/env bash
-# Configures a new Ubuntu machine to serve a 301 redirect at /redirect_me
+# Script that configures a new Ubuntu machine with the following requirements:
 
-set -e
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
+echo "Nicole from Holberton School" | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
 
-# Install nginx
-apt-get update -y
-apt-get install -y nginx
+string_for_replacement="server_name _;\n\trewrite ^\/redirect_me https:\/\/https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+sudo sed -i "s/server_name _;/$string_for_replacement/" /etc/nginx/sites-enabled/default
 
-# Add redirect rule to default server config
-# This inserts the redirect inside the server block
-sed -i '/^\s*server\s*{/a \    location /redirect_me {\n        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }' /etc/nginx/sites-available/default
-
-# Start nginx using service
-service nginx start
+sudo service nginx restart
