@@ -1,15 +1,14 @@
 #!/usr/bin/env bash
-# Installs and configures nginx to serve a static HTML page with "Holberton School"
+# Installs and configures Nginx to serve a custom page with "Holberton School"
 
-# Exit immediately on error
 set -e
 
-# Update and install nginx if not already installed
+# Update package list and install Nginx
 apt-get update -y
 apt-get install -y nginx
 
-# Create a simple HTML page with required text
-echo 'Holberton School for the win!' | tee /var/www/html/index.nginx-debian.html > /dev/null
+# Replace the default index page (this is what Nginx serves at '/')
+echo 'Holberton School for the win!' > /var/www/html/index.nginx-debian.html
 
-# Ensure nginx is started using service (NOT systemctl)
+# Start Nginx without systemctl
 service nginx start
