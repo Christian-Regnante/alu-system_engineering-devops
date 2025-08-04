@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 # Configures a new Ubuntu machine with Nginx and adds a custom response header
 
-sudo apt update
-sudo apt install -y haproxy
+sudo apt-get -y install software-properties-common
+add-apt-repository ppa:vbernat/haproxy-1.8
+sudo apt-get update
+sudo apt-get install -y haproxy
 
 #edit /etc/haproxy/haproxy.cfg to add other settings
 
