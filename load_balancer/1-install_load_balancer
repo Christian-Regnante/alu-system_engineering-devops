@@ -6,10 +6,11 @@ add-apt-repository ppa:vbernat/haproxy-1.8
 sudo apt-get update
 sudo apt-get install -y haproxy
 
-#edit /etc/haproxy/haproxy.cfg to add other settings
+# Enable haproxy to be started by init scripts
+echo "ENABLED=1" >> /etc/default/haproxy
 
-additional_settings=\
-"
+#edit /etc/haproxy/haproxy.cfg to add other settings
+printf %s"
     frontend http-in
         bind *:80
         default_backend servers
@@ -18,12 +19,7 @@ additional_settings=\
         balance roundrobin
         server 6560-web-01 13.222.31.81:80 check
         server 6560-web-02 	34.204.67.32:80 check
-        http-response set-header X-Served-By %[srv_name]
-"
-echo "$additional_settings" | sudo tee -a /etc/haproxy/haproxy.cfg
+" >> /etc/haproxy/haproxy.cfg
 
-# Enable haproxy to be started by init scripts
-
-echo "ENABLED=1" | sudo tee /etc/default/haproxy
-
+# Restart haproxy to apply changes
 sudo service haproxy restart
